@@ -1,0 +1,68 @@
+#include <iostream>
+
+using namespace std;
+
+int find_Single_Number(int nums[], int len) {
+    int single_Number = -1;
+
+    for (int i = 0; i < len; i++) {
+        bool has_Duplicate = false;
+
+        for (int j = 0; j < len; j++) {
+            if (i != j && nums[i] == nums[j]) {
+                has_Duplicate = true;
+                break;
+            }
+        }
+
+        if (!has_Duplicate) {
+            single_Number = nums[i];
+            break; 
+        }
+    }
+
+    return single_Number;
+}
+
+int main() {
+    int nums[] = {2, 4, 1, 4, 2, 7, 1};
+    int len = sizeof(nums) / sizeof(nums[0]);
+
+    int singleNumber = find_Single_Number(nums, len);
+
+    if (singleNumber != -1) {
+        cout << "The single number is: " << singleNumber << endl;
+    } else {
+        cout << "No single number found in the array." << endl;
+    }
+
+    return 0;
+}
+
+
+
+Function Definition (find_Single_Number)
+
+This function looks for a single unique number in an array
+It takes two parameters nums (the array) and len (the length of the array)
+
+Variables Initialization
+
+int single_Number = -1 Initializes a variable to store the single number It starts with -1 as a placeholder
+
+Nested Loop (Checking for Duplicates)
+
+Two nested loops are used to compare each element of the array with every other element
+If an element is found to be the same as another element at a different position it sets (has_Duplicate) to true and breaks out of the inner loop
+
+Checking for No Duplicates
+
+If (has_Duplicate) remains false after the inner loop it means the current element doesn't have any duplicates in the array
+In that case the current element is considered the single number and it is stored in the single_Number variable The loop breaks 
+The function returns the value of single_Number which is either the identified single number or -1 if no single 
+
+Main Function
+
+Initializes an array nums with values and calculates its length (len)
+Calls the find_Single_Number function with the array and its length
+Prints the result

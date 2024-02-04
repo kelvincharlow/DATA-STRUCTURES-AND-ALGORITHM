@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+
+
+void array_Rotation(int numbers[], int len, int k) {
+    k %= size;
+
+    // Reverse the entire array
+    int start = 0, end = len - 1;
+    while (start < end) {
+        int store = numbers[start];
+        numbers[start] = numbers[end];
+        numbers[end] = temp;
+        start++;
+        end--;
+    }
+
+    // Reverse the first k elements
+    start = 0, end = k - 1;
+    while (start < end) {
+        int store = numbers[start];
+        numbers[start] = numbers[end];
+        numbers[end] = store;
+        start++;
+        end--;
+    }
+
+    // Reverse the remaining elements
+    start = k, end = len - 1;
+    while (start < end) {
+        int temp = numbers[start];
+        numbers[start] = numbers[end];
+        numbers[end] = store;
+        start++;
+        end--;
+    }
+}
+
+int main() {
+    int numbers[] = {1, 2, 3, 4, 5};
+    int len = sizeof(numbers) / sizeof(numbers[0]);
+    int k = 2;
+
+    // Perform array rotation
+    array_Rotation(numbers, len, k);
+
+    // Print the rotated array
+    for (int i = 0; i < size; ++i) {
+        cout << numbers[i] << ' ';
+    }
+
+    return 0;
+}
+
+
+
+Function array_Rotation
+
+>Takes an array of numbers (numbers), its length (len), and the number of positions to rotate (k) as parameters
+>Adjusts k to avoid unnecessary rotations by taking the remainder when divided by the length of the array
+>Reverses the entire array using two pointers (start and end)
+>Reverses the first k elements
+>Reverses the remaining elements in the array
+
+main Function
+
+Initializes an array numbers and specifies the rotation positions (k = 2)
+Calls array_Rotation to perform the right rotation 
+Prints the rotated array
+
+Output
+
+Displays the array after performing a right rotation by 2 positions

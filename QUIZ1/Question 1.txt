@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+int eliminate_Duplicates(int arr[], int k) {
+
+    int x = 0;
+    for (int y = 1; y < k; y++) {
+        if (arr[y] != arr[x]) {
+            ++x;
+            arr[x] = arr[y];
+        }
+    }
+    return x + 1;
+}
+
+int main() {
+    int nums[] = {4, 4, 1, 1, 2, 2, 9, 9};
+    int k = sizeof(nums) / sizeof(nums[0]);
+
+    int new_length = eliminate_Duplicates(nums, k);
+
+    cout << "New length of the array is: " << new_length <<endl;
+    cout << "Array with unique elements is: ";
+    for (int i = 0; i < new_length; ++i) {
+        cout << nums[i] << " ";
+    }
+
+    return 0;
+}
+
+
+
+
+Function eliminate_Duplicates
+
+Takes an array (arr) and its size (k) as parameters
+Uses two pointers (x and y) to go through the array
+If the current element (arr[y]) is different from the previous unique element it updates the array in-place and x is incremented
+Returns the new length of the array with unique elements
+
+main Function
+
+Initializes an array nums with duplicate elements
+Calculates the size of the array (k)
+Calls eliminate_Duplicates to remove duplicates in-place and get the new length.
+Prints the new length of the array
+Prints the array with unique elements
