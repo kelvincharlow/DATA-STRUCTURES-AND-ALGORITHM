@@ -1,0 +1,111 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Course {
+public:
+    string course_code;
+    string course_name;
+};
+
+class Grade {
+public:
+    int mark;
+    char the_grade;
+
+    void calculate_grade() {
+        if (mark > 69) the_grade = 'A';
+        else if (mark > 59) the_grade = 'B';
+        else if (mark > 49) the_grade = 'C';
+        else if (mark > 39) the_grade = 'D';
+        else the_grade = 'E';
+    }
+};
+
+class Student {
+public:
+    string registration_number;
+    string name;
+    int age;
+    Course course;
+    Grade grade;
+    bool grades_calculated;
+
+    void add_mark(int mark) {
+        if (!grades_calculated) {
+            grade.mark = mark;
+            grade.calculate_grade();
+            grades_calculated = true;
+        } else {
+            cout << "Grades have already been calculated and cannot be altered." << endl;
+        }
+    }
+};
+
+class School {
+private:
+    Student students[40];
+    int student_count = 0;
+
+public:
+    void add_student(const Student& student) {
+        if (student_count < 40) {
+            students[student_count] = student;
+            student_count++;
+        } else {
+            cout << "Cannot add more students. The limit is 40." << endl;
+        }
+    }
+
+    void edit_student_details(const string& registration_number, const string& name, int age, const Course& course, int mark) {
+        for (int i = 0; i < student_count; i++) {
+            if (students[i].registration_number == registration_number) {
+                students[i].name = name;
+                students[i].age = age;
+                students[i].course = course;
+                students[i].add_mark(mark);
+                break;
+            }
+        }
+    }
+};
+
+int main() {
+    School school;
+
+    // Create a course
+    Course course;
+    course.course_code = "CT SCT212";
+    course.course_name = "Computer Technology";
+
+    // Create a student
+    Student student;
+    student.registration_number = "0712";
+    student.name = "kev";
+    student.age = 22;
+    student.course = course;
+    student.add_mark(55);
+
+    // Add the student to the school
+    school.add_student(student);
+
+    // Edit the student's details
+    school.edit_student_details("0712", "kev", 22, course, 60);
+
+    return 0;
+}
+
+
+
+Classes
+
+Course Represents information about a course, such as its code and name
+Grade Represents a student's grade, consisting of a numerical mark and a letter grade based on a grading system
+Student Represents a student, with details like registration number, name, age, the course they are enrolled in, and their grades. The add_mark function calculates and sets the grade based on the provided mark
+School Manages an array of students allowing the addition of students and editing of their details
+
+Main Function
+
+Adds the student to the School
+Edits the student's details (name, age, and mark) through the edit_student_details function

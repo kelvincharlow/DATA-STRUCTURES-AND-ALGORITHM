@@ -1,0 +1,78 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Course {
+    string course_code;
+    string course_name;
+};
+
+struct Grade {
+    int mark;
+    char the_grade;
+};
+
+struct Student {
+    string registration_number;
+    string name;
+    int age;
+    Course course;
+    Grade grade;
+};
+
+char calculateGrade(int mark) {
+    if (mark > 69) return 'A';
+    else if (mark > 59) return 'B';
+    else if (mark > 49) return 'C';
+    else if (mark > 39) return 'D';
+    else return 'E';
+}
+
+int main() {
+    // Create a single instance of Student
+    Student new_student;
+    new_student.registration_number = "0712";
+    new_student.name = "kev";
+    new_student.age = 30;
+    new_student.course.course_code = "CT SCT212";
+    new_student.course.course_name = "Computer Technology";
+    new_student.grade.mark = 75;
+    new_student.grade.the_grade = calculateGrade(new_student.grade.mark);
+
+    // Edit student's details
+    new_student.name = "kev";
+
+    // Add marks and calculate grades
+    new_student.grade.mark = 40;
+    new_student.grade.the_grade = calculateGrade(new_student.grade.mark);
+
+    // Display student details
+    cout << "Registration Number: " << new_student.registration_number << "\n";
+    cout << "Name: " << new_student.name << "\n";
+    cout << "Age: " << new_student.age << "\n";
+    cout << "Course Code: " << new_student.course.course_code << "\n";
+    cout << "Course Name: " << new_student.course.course_name << "\n";
+    cout << "Mark: " << new_student.grade.mark << "\n";
+    cout << "Grade: " << new_student.grade.the_grade << "\n";
+
+    return 0;
+}
+
+
+Struct Definitions
+
+Course Represents information about a course including a course code and name
+Grade Represents the grade of a student consisting of a numerical mark and a corresponding letter grade
+Student Represents a student holding details such as registration number name age course information and grade
+
+Function Definition (calculateGrade)
+
+Takes a numerical mark as input and returns the corresponding letter grade 
+
+Main Function
+
+Creates an instance of the Student structure named new_student
+Calls calculateGrade to determine the initial letter grade
+Edits the students name and updates the grade with a new mark recalculating the letter grade
+Displays the details of the student including registration number name age course information mark and letter grade

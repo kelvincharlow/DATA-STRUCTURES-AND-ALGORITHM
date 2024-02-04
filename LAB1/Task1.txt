@@ -1,0 +1,65 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int summation(int* nums, int size) {
+    int sum = 0;
+    for(int i = 0; i < size; i++) {
+        sum += nums[i];
+    }
+    return sum;
+}
+
+int maximum(int* nums, int size) {
+    int max = nums[0];
+    for(int i = 0; i < size; i++) {
+        if(max < nums[i])
+            max = nums[i];
+    }
+    return max;
+}
+
+int main() {
+    int n;
+    cout << "Enter the number of elements: ";
+    cin >> n;
+
+    int* nums = new int[n]; // Dynamically allocate an array
+
+    cout << "Enter " << n << " integers:\n";
+    for(int i = 0; i < n; i++) {
+        cin >> nums[i];
+    }
+
+    cout << "Sum of elements: " << summation(nums, n) << "\n";
+    cout << "Maximum element: " << maximum(nums, n) << "\n";
+
+    delete[] nums; // Deallocate the dynamically allocated array
+
+    return 0;
+}
+
+
+
+Function Definitions (summation and maximum)
+
+These functions calculate the sum and find the maximum element in an array respectively
+
+Main Function
+
+User inputs the number of elements (n) to be stored in the array
+An array (nums) is dynamically allocated with size n
+
+User Input
+
+User inputs the integers into the dynamically allocated array
+
+Function Calls and Output
+
+The summation and maximum functions are called with the dynamically allocated array and its size
+The calculated sum and maximum element are displayed
+
+Memory Deallocation
+
+The dynamically allocated array (nums) is deallocated using delete[] nums to avoid memory leaks
